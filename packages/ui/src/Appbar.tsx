@@ -1,25 +1,28 @@
-import { Button } from "./button";
+import { signIn, signOut } from "next-auth/react";
+import Button from "./Button";
 
 interface AppbarProps {
-    user?: {
-        name?: string | null;
-    },
-    // TODO: can u figure out what the type should be here?
-    onSignin: any,
-    onSignout: any
+	user?: {
+		name?: string | null;
+	};
+	onSignIn: typeof signIn;
+	onSignOut: () => void;
 }
 
-export const Appbar = ({
-    user,
-    onSignin,
-    onSignout
-}: AppbarProps) => {
-    return <div className="flex justify-between border-b px-4 border-slate-300">
-        <div className="text-lg flex flex-col justify-center">
-            PayTM
-        </div>
-        <div className="flex flex-col justify-center pt-2">
-            <Button onClick={user ? onSignout : onSignin}>{user ? "Logout" : "Login"}</Button>
-        </div>
-    </div>
-}
+const Appbar = ({ user, onSignIn, onSignOut }: AppbarProps) => {
+	return (
+		<div className="flex justify-between items-center border-b px-4">
+			<div className="text-lg ">PayTM</div>
+			<div className=" flex justify-between items-center gap-4">
+				{user?.name && <div>Welcome, {user?.name}!</div>}
+				<div className="pt-2">
+					<Button onClick={user ? onSignOut : onSignIn}>
+						{user ? "Logout" : "Login"}
+					</Button>
+				</div>
+			</div>
+		</div>
+	);
+};
+
+export default Appbar;

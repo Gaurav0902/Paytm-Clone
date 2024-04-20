@@ -9,9 +9,9 @@ export function Card({
 }): JSX.Element {
   return (
     <div
-      className="border p-6 bg-white rounded-xl bg-[#ededed]"
+      className="p-4 shadow-xl rounded-lg bg-slate-100"
     >
-      <h1 className="text-xl border-b pb-2">
+      <h1 className="text-xl border-b pb-2 border-slate-400 mb-4">
         {title}
       </h1>
       <p>{children}</p>
